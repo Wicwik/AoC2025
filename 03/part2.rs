@@ -4,12 +4,12 @@ fn max_twelve_digit_concat(line: &str) -> Option<i64> {
         .filter_map(|c| c.to_digit(10).map(|d| d as u8))
         .collect();
 
-    const joltage: usize = 12;
-    if digits.len() < joltage {
+    const JOLTAGE: usize = 12;
+    if digits.len() < JOLTAGE {
         return None;
     }
 
-    let mut to_remove = digits.len() - joltage;
+    let mut to_remove = digits.len() - JOLTAGE;
     let mut stack: Vec<u8> = Vec::with_capacity(digits.len());
 
     for &digit in &digits {
@@ -26,7 +26,7 @@ fn max_twelve_digit_concat(line: &str) -> Option<i64> {
         stack.push(digit);
     }
 
-    stack.truncate(TARGET_LEN);
+    stack.truncate(JOLTAGE);
 
     let value = stack
         .iter()
